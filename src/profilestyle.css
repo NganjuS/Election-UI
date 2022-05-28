@@ -1,0 +1,22 @@
+.labelssty {
+
+    color:  #007FFF;
+    font-weight: bold;
+}
+
+.labeldisplay
+{
+    color:  orange;
+    font-weight: bold; 
+}
+.mostpopular
+{
+    color:  #32CD32;
+    font-weight: bold;
+}
+.navstyling 
+{
+    height : "40px";
+    color :"orange";
+    font-weight : 'bold'
+}

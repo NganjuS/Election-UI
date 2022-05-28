@@ -1,49 +1,59 @@
-import { Button,  Row, Col, Card,  Badge,ProgressBar } from 'react-bootstrap';
+import { Button,  Row, Col, Card,  Badge,Table } from 'react-bootstrap';
 import React, { Component } from 'react';  
+import './profilestyle.css';
 import profilepic from './resources/images/smallprofile.png'
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
 class Profile extends Component {  
     constructor(props) {
         super(props);
-        this.state = {
-          fullname : "John T Kirk",
-          party : "Jubilee",
-          coalition : "Azimio",
-          winpossibility : "****",
-          partymotto : "Usawa kwa wote",
-        };
+        this.state = { 
+            defname : "Test",
+            rooturl : 'http://localhost:8000/static/'
+        }
       }
+      componentDidMount() { 
+        this.fetchRemoteItems(); 
+     }
+     fetchRemoteItems() {
+        fetch("http://localhost:8000/getcandidate/?codestr=RAO")
+           .then(res => res.json())
+           .then(
+              (result) => {
+                 this.setItems(result)
+              },
+              (error) => {
+                 this.setState({
+                    isLoaded: false,
+                    error
+                 });
+              }
+           )
+     }
+     setItems(cand) { 
+       this.setState({popularcand : cand });
+     }
     render()
     {   
+        
         return (
-            <Card style={{ width: '22rem' }}  border="primary" bg="dark" variant="light" text='light' >
+            <Card style={{ width: '22rem' }}  bg="dark"  >
                 <Card.Header>
-                    <Row>
-                    <Col><Badge bg="primary" style={{ padding : '8px'} }><b style={{ fontSize:"12px", color:"black" }}>Name </b></Badge> : <Badge bg="info" style={{ padding : '8px'} }> { this.state.fullname }</Badge></Col>
-                   <Col>party logo</Col>
-                    </Row>
-
-                </Card.Header>
-            <Card.Img variant="bottom" src={profilepic}   />
+                <Row>
+                    <Col md="auto" className='mostpopular' >Most Popular Candidate</Col>
+                    
+                </Row>
+            </Card.Header>
+            <Card.Img variant="bottom" src={ this.state.popularcand ? this.state.rooturl + this.state.popularcand.imageurl : profilepic} style={{width:"350px", height:"300px"}}   />
             <Card.Body>
-
-             <Row>
-                 <Col><Badge bg="primary" style={{ padding : '8px'} }>Party </Badge> : <Badge bg="info" style={{ padding : '8px'} }> {this.state.party}</Badge></Col>
-                 <Col><Badge bg="primary" style={{ padding : '8px'} }><b style={{ fontSize:"12px", color:"black" }}>Coalition </b> </Badge> : <Badge bg="info" style={{ padding : '8px'} }>{this.state.coalition}</Badge> </Col>
-             </Row>
-             <hr/>
-             <Row>
-                 <Col><Badge bg="primary" style={{ padding : '8px'} }>Winning Possibility </Badge> : <Badge bg="info" style={{ padding : '6px'} }><Rater total={5} rating={3} />  </Badge></Col>
-             </Row>
-             <hr/>
-             <Row>
-                 <Col><Badge bg="primary" style={{ padding : '8px'} }>Party Motto </Badge> : <Badge bg="info" style={{ padding : '8px'} }> {this.state.partymotto}</Badge></Col>
-             </Row>
-             <hr/>
-             <Row >
-                 <Col><Button href="#" size="sm">See More ....</Button></Col>
-             </Row>
+                <Table bordered hover size="sm" variant="dark">
+                    <tr><td className='labelssty'>Full Name : </td><td className='labeldisplay' >{this.state.popularcand ? this.state.popularcand.fullnames : this.state.defname}</td></tr>
+                    <tr><td className='labelssty'>Party : </td><td className='labeldisplay' >{ this.state.popularcand ? this.state.popularcand.party.name : "" }</td></tr>
+                    <tr><td className='labelssty'>Coalition : </td><td className='labeldisplay' >{ this.state.popularcand ? this.state.popularcand.coalition : ""}</td></tr>
+                    <tr><td className='labelssty'>Winning Possibility : </td><td className='labeldisplay' ><Rater total={5} rating={3} /></td></tr>
+                    <tr><td className='labelssty'>Party Motto : </td><td className='labeldisplay' >{ this.state.popularcand ? this.state.popularcand.party.slogan : "" }</td></tr>
+                </Table>
+             
             </Card.Body>
             </Card>
         )

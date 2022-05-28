@@ -1,87 +1,45 @@
-import {  Container, Row, Col, Nav, Navbar, ProgressBar, Table } from 'react-bootstrap';
+import {  Container, Row, Col, Nav, Navbar, ProgressBar, Table, Image } from 'react-bootstrap';
 import React, { Component } from 'react'; 
 import Profile from './Profile'
 import ProfileOther from './ProfileOther'
+import ProfileList from './ProfilesList'
+import profilepic from './resources/images/smallprofile.png'
 class Home extends Component { 
     constructor(props) {
         super(props);
         this.state = {
-         now : 60,
-         dt :   [{
-             id: 1,
-          fullname : "John T Kirk",
-          party : "Jubilee",
-          coalition : "Azimio",
-          winpossibility : 3,
-          partymotto : "Usawa kwa wote",
-          imageurl : ""
-        },{
-            id: 2,
-            fullname : "John T Kirk",
-            party : "Jubilee",
-            coalition : "Azimio",
-            winpossibility : 3,
-            partymotto : "Usawa kwa wote",imageurl : ""
-          },{
-            id: 3,
-            fullname : "John T Kirk",
-            party : "Jubilee",
-            coalition : "Azimio",
-            winpossibility : 3,
-            partymotto : "Usawa kwa wote",imageurl : ""
-          },{
-            id: 4,
-            fullname : "John T Kirk",
-            party : "Jubilee",
-            coalition : "Azimio",
-            winpossibility : 3,
-            partymotto : "Usawa kwa wote",imageurl : ""
-          },
-          {
-                      id: 5,
-                      fullname : "John T Kirk",
-                      party : "Jubilee",
-                      coalition : "Azimio",
-                      winpossibility : 3,
-                      partymotto : "Usawa kwa wote",imageurl : ""
-                    },{
-                      id: 6,
-                      fullname : "John T Kirk",
-                      party : "Jubilee",
-                      coalition : "Azimio",
-                      winpossibility : 3,
-                      partymotto : "Usawa kwa wote",imageurl : ""
-                    },{
-                      id: 7,
-                      fullname : "John T Kirk",
-                      party : "Jubilee",
-                      coalition : "Azimio",
-                      winpossibility : 3,
-                      partymotto : "Usawa kwa wote",imageurl : ""
-                    }]};
-      } 
-
+        }
+      }
     render()
     {
-        const listCandidates  = this.state.dt.map( (candidateobj) => <Col style={{ marginTop : "5px" }}>< ProfileOther candidate={candidateobj}  /></Col>
-             );
+
         return (
 
                     <div>
-                        <Navbar bg="dark" variant="dark">
-                      
+                    <Navbar bg="dark" variant="dark" style={{ height : "40px" }} >
+                                
+                                    <Nav >
+                                      <Nav.Link style={{ height : "40px", color :"#32CD32", fontWeight : 'bold' }}>Total Votes:15,000,000</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"orange", fontWeight : 'bold' }}>|</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>Raila Odinga:7,500,000</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>William Ruto:7,500,000 </Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"orange", fontWeight : 'bold' }}>|</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>% age-</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>RAO:50%,</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>WSR:50%</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"orange", fontWeight : 'bold' }}>|</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}> Source : Registrar of Parties</Nav.Link>
+                                    </Nav>
+                                 
                         
                             </Navbar>
-                            <Row className="mt-3 " >
+                            <Row  className="mt-2">
                                 <Col md="auto">
-                                     <Profile />
+                                     <Profile style={{ marginLeft : '5px'} } />
                                 </Col>
                                 <Col>
-                                        
-                                            <Row>
-                                            {listCandidates}
-                                            </Row>
-                                    
+                             <  ProfileList />
+                                          
                                 </Col>
                             </Row>
 
@@ -90,14 +48,3 @@ class Home extends Component {
     }
 }
 export default Home;
-   /*    <Row >
-                              <Col>Polling Meter: <ProgressBar style={{ width : "150px"}} now={this.state.now} label={`${this.state.now}%`}/></Col>
-                              <Col><ProgressBar now={this.state.now} /></Col>
-                          </Row><Container>
-                                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                                    <Nav className="me-auto">
-                                    <Nav.Link href="#home">Home</Nav.Link>
-                                    <Nav.Link href="#features">Features</Nav.Link>
-                                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                                    </Nav>
-                                </Container>*/
