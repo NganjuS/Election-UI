@@ -19,23 +19,23 @@ class Home extends Component {
                     <Navbar bg="dark" variant="dark" style={{ height : "40px" }} >
                                 
                                     <Nav >
-                                      <Nav.Link style={{ height : "40px", color :"#32CD32", fontWeight : 'bold' }}>Total Votes:15,000,000</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#32CD32", fontWeight : 'bold' }}>Total Votes : 15,000,000</Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"orange", fontWeight : 'bold' }}>|</Nav.Link>
-                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>Raila Odinga:7,500,000</Nav.Link>
-                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>William Ruto:7,500,000 </Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>Raila Odinga : 7,500,000</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>William Ruto : 7,500,000 </Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"orange", fontWeight : 'bold' }}>|</Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>% age-</Nav.Link>
-                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>RAO:50%,</Nav.Link>
-                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>WSR:50%</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>RAO : 50%,</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>WSR : 50%</Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"orange", fontWeight : 'bold' }}>|</Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}> Source : Registrar of Parties</Nav.Link>
                                     </Nav>
                                  
                         
                             </Navbar>
-                            <Row  className="mt-2">
+                            <Row  className="mt-2" style={{ padding : '5px'} }> 
                                 <Col md="auto">
-                                     <Profile style={{ marginLeft : '5px'} } />
+                                     <Profile  />
                                 </Col>
                                 <Col>
                              <  ProfileList />
