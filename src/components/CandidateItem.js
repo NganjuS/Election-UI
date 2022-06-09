@@ -8,7 +8,6 @@ import 'react-rater/lib/react-rater.css'
 class CandidateItem extends Component {  
     constructor(props) {
         super(props);
-        console.log(props.key);
         this.state = {
             candidate : props.candidate
           };

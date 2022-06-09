@@ -1,22 +1,17 @@
-import {  Container, Row, Col, Nav, Navbar, ProgressBar, Table, Image } from 'react-bootstrap';
-import React, { Component } from 'react'; 
-import Profile from './Profile'
-import ProfileOther from './ProfileOther'
-import ProfileList from './ProfilesList'
-import profilepic from './resources/images/smallprofile.png'
-class Home extends Component { 
+import React, { Component } from 'react';  
+import {  Row, Col, Nav, Navbar } from 'react-bootstrap';
+class AppNav extends Component {  
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = { 
         }
       }
+
     render()
-    {
-
+    {   
+        
         return (
-
-                    <div>
-                    <Navbar bg="dark" variant="dark" style={{ height : "40px" }} >
+            <Navbar bg="dark" variant="dark" style={{ height : "40px" }} className="navbar navbar-inverse navbar-fixed-top">
                                 
                                     <Nav >
                                       <Nav.Link style={{ height : "40px", color :"#32CD32", fontWeight : 'bold' }}>Total Votes : 15,000,000</Nav.Link>
@@ -32,19 +27,8 @@ class Home extends Component {
                                     </Nav>
                                  
                         
-                            </Navbar>
-                            <Row  className="mt-2" style={{ padding : '5px'} }> 
-                                <Col md="auto">
-                                     <Profile  />
-                                </Col>
-                                <Col>
-                             <  ProfileList />
-                                          
-                                </Col>
-                            </Row>
-
-                    </div>
-            )
+                            </Navbar> 
+        )
     }
 }
-export default Home;
+export default AppNav;

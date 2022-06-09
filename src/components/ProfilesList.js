@@ -1,21 +1,21 @@
 import { Button,  Row, Col, Image,Table } from 'react-bootstrap';
 import React, { Component } from 'react';  
 import './profilestyle.css';
-import profilepic from './resources/images/smallprofile.png'
-import Rater from 'react-rater'
 import CandidateItem from './CandidateItem'
 import 'react-rater/lib/react-rater.css'
 class ProfileList extends Component {  
     constructor(props) {
         super(props);
-        this.state = {  listofcandidts : [] }
+        this.state = {  listofcandidts : [],
+         rootapiurl : process.env.REACT_APP_UI.BASE_URL,
+       }
        
       }
     componentDidMount() { 
         this.fetchRemoteItems(); 
      }
      fetchRemoteItems() {
-        fetch("http://localhost:8000/getcandidates")
+        fetch(this.state.rootapiurl+"/getcandidates")
            .then(res => res.json())
            .then(
               (result) => {

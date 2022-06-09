@@ -8,15 +8,17 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            defname : "Test",
-            rooturl : 'http://localhost:8000/static/'
+            rootapiurl : process.env.REACT_APP_UI.BASE_URL,
+            rootimgurl : process.env.REACT_APP_UI.BASE_URL+'/static/',
+            
         }
+
       }
       componentDidMount() { 
         this.fetchRemoteItems(); 
      }
      fetchRemoteItems() {
-        fetch("http://localhost:8000/getcandidate/?codestr=RAO")
+        fetch(this.state.rootapiurl+"/getcandidate/?codestr=RAO")
            .then(res => res.json())
            .then(
               (result) => {
@@ -44,7 +46,7 @@ class Profile extends Component {
                     
                 </Row>
             </Card.Header>
-            <Card.Img variant="bottom" src={ this.state.popularcand ? this.state.rooturl + this.state.popularcand.imageurl : profilepic} style={{width:"350px", height:"300px"}}   />
+            <Card.Img variant="bottom" src={ this.state.popularcand ? this.state.rootimgurl + this.state.popularcand.imageurl : profilepic} style={{width:"350px", height:"300px"}}   />
             <Card.Body>
                 <Table bordered hover size="sm" variant="dark">
                     <tr><td className='labelssty'>Full Name : </td><td className='labeldisplay' >{this.state.popularcand ? this.state.popularcand.fullnames : this.state.defname}</td></tr>
