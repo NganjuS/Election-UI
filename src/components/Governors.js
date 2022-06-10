@@ -13,9 +13,9 @@ class Governors extends Component {
       setShow(val)
       {
         
-        this.setState(
-  
+        this.setState( 
           { show : val}
+          
         )
      }
     componentDidMount() { 
