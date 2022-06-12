@@ -11,6 +11,14 @@ class Login extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.checkIsLoggedIn();
+    }
+    checkIsLoggedIn()
+    {
+        if(localStorage.getItem("token"))
+        {
+            window.location = "/backend";
+        }
     }
     handleChange(event) {
         const target = event.target;
@@ -48,9 +56,9 @@ class Login extends Component {
     { 
         if(responseObj.hasOwnProperty("access_token"))
         {
-            localStorage.setItem("tkn", responseObj.access_token)
-            const navigate = useNavigate()
-            navigate('/backend/')
+            localStorage.setItem("token", responseObj.access_token)
+            localStorage.setItem("username", responseObj.user.username)
+            window.location = "/backend";
 
         }
         else

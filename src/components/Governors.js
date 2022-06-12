@@ -75,7 +75,7 @@ class Governors extends Component {
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={handleClose}>
-                Show
+                Save
               </Button>
             </Modal.Footer>
             </Modal>

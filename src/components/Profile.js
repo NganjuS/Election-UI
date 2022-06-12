@@ -18,7 +18,7 @@ class Profile extends Component {
         this.fetchRemoteItems(); 
      }
      fetchRemoteItems() {
-        fetch(this.state.rootapiurl+"/getcandidate/?codestr=RAO")
+        fetch(this.state.rootapiurl+"/getcandidate/?codestr=WSR")
            .then(res => res.json())
            .then(
               (result) => {

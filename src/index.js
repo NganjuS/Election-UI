@@ -24,9 +24,9 @@ export default function App() {
             <Route path="/" element={<Presidential />} />
               
             <Route path="governors" element={<Governors />} />
-            <Route path="backend/knock" element={<Login />} />
-            <Route path="backend/" element={<BackendDashboard />} />
-            <Route path="senator/" element={<SelectionModal />} />
+            <Route path="login" element={<Login />} />
+            <Route path="backend" element={<BackendDashboard />} />
+            <Route path="senator" element={<SelectionModal />} />
           </Routes>
       <Layout />
       </div>
