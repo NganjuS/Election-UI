@@ -21,7 +21,7 @@ class AddCandidate extends Component {
                 "weight": 1,
                 "dateofbirth": "",
                 "imageurl": "",
-                "is_active": "",
+                "is_active": true,
                 "slogan": "",
                 "color": "",
                 "position_id": 0,
@@ -232,35 +232,38 @@ class AddCandidate extends Component {
      
     render()
     {   
-        const rowlist = this.state.candidateslist.map((candidate) => {
+        const rowlist = this.state.candidateslist.map((candidate, idx) => {
 
         return <tr key={candidate.id}>
+            <td>{idx+1}</td>
             <td>{candidate.fullnames}</td>
+            <td>{candidate.short_code}</td>
             <td>{candidate.party.name}</td>
-            <td></td>
-            <td></td>
-            <td><Button variant="info" onClick={ () => this.toggleEditWindow(true)  }>+</Button></td>
+            <td>{candidate.position.name}</td>
+            <td>{candidate.deputy == null ? '' :  candidate.deputy.fullnames }</td>
             <td><Button variant="primary" onClick={this.editCandidate} data-id={candidate.id}>E</Button></td>
             <td><Button variant="danger" onClick={this.removeCandidate} data-id={candidate.id}>D</Button></td>
         </tr>})
         const deputy = this.state.candidateslist.map((candi) => <option key={candi.id} value={candi.id} >{candi.fullnames}</option>)
         const postn = this.state.positions.map((position) => <option key={position.id}  value={position.id} >{position.name}</option>)
-        const cnty = this.state.counties.map((county) => <option key={county.id} value={county.id} >{county.name}</option>)
+        const cnty = this.state.counties.map((county) => <option key={county.id} value={county.id} >{county.name}({county.code})</option>)
         const prty = this.state.parties.map((party) => <option key={party.id} value={party.id} >{party.name}</option>)
     
     const handleClose = () => this.toggleEditWindow(false);
         return (
           <div>
-
+            <Button variant="info" onClick={ () => this.toggleEditWindow(true)  } style={{ margin : "10px" }}>Add Candidate</Button>
 
                 <Table bordered hover variant="dark" style={{ margintop : "10px" }}>
                     <thead>
-                        <tr style={{ color : '#007FFF' }}>                          
+                        <tr style={{ color : '#007FFF' }}>  
+                            <th>#</th>                        
                             <th>Full names</th>
+                            <th>Code</th>
                             <th>Party</th>
                             <th>Position</th>
                             <th>Deputy</th>
-                            <th>Add</th>
+                            
                             <th>Edit</th>
                             <th>Del</th>
                         </tr>
@@ -332,7 +335,8 @@ class AddCandidate extends Component {
                                         id="custom-switch"
                                         label="Is Active"
                                         name ="is_active"
-                                        value={this.state.candidateprof.is_active} onChange={this.handleChange}
+                                        value={this.state.candidateprof.is_active} 
+                                        onChange={this.handleChange}
                                     />
                                 </Form.Group>
                             </Col>

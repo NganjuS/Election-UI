@@ -8,6 +8,7 @@ class ProfileList extends Component {
         super(props);
         this.state = {  listofcandidts : [],
          rootapiurl : process.env.REACT_APP_UI.BASE_URL,
+         position : 1
        }
        
       }
@@ -15,7 +16,7 @@ class ProfileList extends Component {
         this.fetchRemoteItems(); 
      }
      fetchRemoteItems() {
-        fetch(this.state.rootapiurl+"/getcandidates")
+        fetch(this.state.rootapiurl+"/getcandidatesbyposition?positionid="+this.state.position)
            .then(res => res.json())
            .then(
               (result) => {
@@ -46,7 +47,8 @@ class ProfileList extends Component {
                 <th>#</th>
                 <th>Photo</th>
                 <th>Full Name</th>
-                <th>Coalition</th>
+                <th>Party</th>
+                <th>Deputy</th>
                 <th>Slogan</th>
                 <th>Age</th>
 
