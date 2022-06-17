@@ -14,7 +14,7 @@ class AppNav extends Component {
             <Navbar bg="dark" variant="dark" style={{ height : "40px" }} className="navbar navbar-inverse navbar-fixed-top">
                                 
                                     <Nav >
-                                      <Nav.Link style={{ height : "40px", color :"#32CD32", fontWeight : 'bold' }}>Total Votes : 15,000,000</Nav.Link>
+                                      <Nav.Link style={{ height : "40px", color :"#32CD32", fontWeight : 'bold' }}>Total Votes : {this.props.defsett == null ? 0 : this.props.defsett.totalvotes.toLocaleString('en-US') }</Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"orange", fontWeight : 'bold' }}>|</Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>Raila Odinga : 7,500,000</Nav.Link>
                                       <Nav.Link style={{ height : "40px", color :"#007FFF", fontWeight : 'bold' }}>William Ruto : 7,500,000 </Nav.Link>

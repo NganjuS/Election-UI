@@ -9,16 +9,18 @@ class Presidential extends Component {
         super(props);
         this.state = { 
         }
-      }
 
+      }
     render()
     {   
         
         return (
           <div>
-          <AppNav />
-            <Row  className="mt-2" > 
+          <AppNav defsett={this.props.defsett}/>
+            <Row  className="mt-2" >
+             
                                 <Col md="auto">
+
                                      <Profile  />
                                 </Col>
                                 <Col>

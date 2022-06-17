@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {  Container, Row, Col, Nav, Navbar, ProgressBar, Table, Image } from 'react-bootstrap';
@@ -16,19 +16,36 @@ import BackendDashboard from './components/BackendDashboard';
 import SelectionModal from './components/SelectionModal';
 //ReactDOM.render(<ThemeSwitcher />, document.getElementById('root'));  
 export default function App() {
+  const [dftData, setDftData] = useState(null);
+  function setDefaults(recdata)
+  {
+    
+  }
+  useEffect(() =>  {
+      fetch(process.env.REACT_APP_UI.BASE_URL+"/defaultsdata/")
+         .then(res => res.json())
+         .then(
+            (result) => {
+              setDftData(result);
+            },
+            (error) => {
+               
+            }
+         )},[]
+  );
+
   return (
     <BrowserRouter>
       <div className="container-fluid">
-          
           <Routes>
-            <Route path="/" element={<Presidential />} />
+            <Route path="/" element={<Presidential defsett={dftData} />} />
               
             <Route path="governors" element={<Governors />} />
             <Route path="login" element={<Login />} />
             <Route path="backend" element={<BackendDashboard />} />
             <Route path="senator" element={<SelectionModal />} />
           </Routes>
-      <Layout />
+      <Layout eta={dftData} />
       </div>
     </BrowserRouter>
    
