@@ -8,20 +8,31 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = { 
+
+            candidateid : this.props.curid,
             rootapiurl : process.env.REACT_APP_UI.BASE_URL,
             rootimgurl : process.env.REACT_APP_UI.BASE_URL+'/static/',
             
         }
+       
 
       }
       componentDidMount() { 
-        this.fetchRemoteItems(); 
+        this.fetchRemoteItems(this.state.candidateid); 
      }
-     fetchRemoteItems() {
-        fetch(this.state.rootapiurl+"/getcandidate/?codestr=WSR")
+     componentWillReceiveProps(nextProps) {
+
+         this.fetchRemoteItems(nextProps.curid);
+        
+    }
+     fetchRemoteItems(cid) {
+        console.log(this.state.candidateid)
+        
+        fetch(this.state.rootapiurl+"/getcandidatebyid/?id="+cid)
            .then(res => res.json())
            .then(
               (result) => {
+
                  this.setItems(result)
               },
               (error) => {
@@ -51,7 +62,7 @@ class Profile extends Component {
                 <Table bordered hover size="sm" variant="dark">
                     <tr><td className='labelssty'>Full Name : </td><td className='labeldisplay' >{this.state.popularcand ? this.state.popularcand.fullnames : this.state.defname}</td></tr>
                     <tr><td className='labelssty'>Party : </td><td className='labeldisplay' >{ this.state.popularcand ? this.state.popularcand.party.name : "" }</td></tr>
-                    <tr><td className='labelssty'>Coalition : </td><td className='labeldisplay' >{ this.state.popularcand ? this.state.popularcand.coalition : ""}</td></tr>
+                    <tr><td className='labelssty'>Coalition : </td><td className='labeldisplay' >{ this.state.popularcand ? this.state.popularcand.party.coalition.name : ""}</td></tr>
                     <tr><td className='labelssty'>Winning Possibility : </td><td className='labeldisplay' ><Rater total={5} rating={3} /></td></tr>
                     <tr><td className='labelssty'>Party Motto : </td><td className='labeldisplay' >{ this.state.popularcand ? this.state.popularcand.party.slogan : "" }</td></tr>
                 </Table>

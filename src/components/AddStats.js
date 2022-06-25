@@ -20,11 +20,17 @@ class AddStats extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.saveStatsData = this.saveStatsData.bind(this);
+        this.backToList = this.backToList.bind(this);
 
       }
       componentDidMount() { 
         this.fetchRemoteItems(); 
      }
+     backToList()
+     {
+      window.location = '/statslist'
+     }
+
      showAlert(val)
       {
           this.setState({show : val});
@@ -119,7 +125,6 @@ class AddStats extends Component {
                     }
                     else if(result.status === 200)
                     {
-                        console.log('no error', datam)
                         this.setState({show : true, message : "Posted successfully"});
                     }
                 });
@@ -178,6 +183,9 @@ class AddStats extends Component {
                               </Form.Group>
                               <Button variant="primary" type='submit' style={{ marginTop : "10px"}}>
                                         Save
+                                    </Button>
+                                    <Button variant="primary" onClick={ () => this.backToList()  }  style={{ marginLeft : "10px", marginTop : "10px"}}>
+                                        Back
                                     </Button>
                             </Form>
                       </Card.Body>

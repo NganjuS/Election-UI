@@ -5,16 +5,39 @@ import SelectionModal from './SelectionModal';
 import Countdown from "react-countdown";
 class Layout extends Component {  
     constructor(props) {
-      super(props);
-      this.state = {
-        rootapiurl : process.env.REACT_APP_UI.BASE_URL,
-        electiondate : props.eta == null ? new Date() : new Date(props.eta.electiondate)
-      }
-        console.log(props.eta == null ? "" : props.eta.electiondate)
+        super(props);
+        this.state = {
+          rootapiurl : process.env.REACT_APP_UI.BASE_URL,
+          electiondate : null
+        }
+
       }
       
+      componentDidMount() { 
+       
+        this.fetchRemoteItems(); 
+     
+     }
+      fetchRemoteItems() {
+      // get default settings
+        fetch(this.state.rootapiurl+"/defaultsdata/")
+               .then(res => res.json())
+               .then(
+                  (result) => {
+                   this.setState({ electiondate : new Date(  result.electiondate)});
+                  },
+                  (error) => {
+                     
+                  }
+               )
+      }
       render()
       {
+        let toRender = null;
+        if(this.state.electiondate)
+        {
+          toRender =  <Countdown date={this.state.electiondate.getTime()} />;
+        }
         
         return (
         <div className="footer fixed-bottom" style={{ backgroundColor : "#212529"}}>
@@ -34,7 +57,7 @@ class Layout extends Component {
             <div className="vr" style={{  color :"orange", fontWeight : 'bold' }} />
             <div><Link to="/governors" style={{ textDecoration: 'none', fontWeight : 'bold' }}>Contact Us</Link></div>
             <div className="vr" style={{  color :"orange", fontWeight : 'bold' }} />
-            <div style={{  color :"orange", fontWeight : 'bold' }} >Days Remaining : <Countdown date={this.state.electiondate} /></div>
+            <div style={{  color :"orange", fontWeight : 'bold' }} >Days Remaining : {toRender}  </div>
         </Stack>
        
         </div>

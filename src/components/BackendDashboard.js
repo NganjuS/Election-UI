@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BackendNav from './BackendNav';
 import AddCandidate from './AddCandidate';
 import AddStats from './AddStats';
+import StatsList from './StatsList';
 import AddStatsSource from './AddStatsSource';
 import {  Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 class BackendDashboard extends Component {  
@@ -51,7 +52,7 @@ class BackendDashboard extends Component {
             toRender = < AddStatsSource />
             break;
           case "Stats":
-            toRender = < AddStats />
+            toRender = < StatsList />
             break;
           default:
             toRender = <AddCandidate/>
