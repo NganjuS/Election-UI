@@ -1,7 +1,8 @@
 import React, { Component } from 'react';  
 import BackendNav from './BackendNav';
 import AddCandidate from './AddCandidate';
-import AddStatistics from './AddStatistics';
+import AddStats from './AddStats';
+import AddStatsSource from './AddStatsSource';
 import {  Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 class BackendDashboard extends Component {  
     constructor(props) {
@@ -46,11 +47,14 @@ class BackendDashboard extends Component {
           case "Candidates":
             toRender = < AddCandidate/>
           break;
-          case "Statistics":
-            toRender = < AddStatistics />
+          case "Stats Source":
+            toRender = < AddStatsSource />
+            break;
+          case "Stats":
+            toRender = < AddStats />
             break;
           default:
-            toRender = <AddStatistics/>
+            toRender = <AddCandidate/>
         }
     
     
@@ -63,10 +67,10 @@ class BackendDashboard extends Component {
                                 <NavDropdown title="Add Records" id="basic-nav-dropdown"  >
                                     <NavDropdown.Item  onClick = {this.selectComponent} >Candidates</NavDropdown.Item>
                                     <NavDropdown.Item  >County</NavDropdown.Item>
-                                    <NavDropdown.Item onClick = {this.selectComponent}>Statistics</NavDropdown.Item>
+                                    <NavDropdown.Item onClick = {this.selectComponent}>Stats Source</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">Positions</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.4">Party</NavDropdown.Item>
+                                    <NavDropdown.Item onClick = {this.selectComponent}>Stats</NavDropdown.Item>
+                                    <NavDropdown.Item >Party</NavDropdown.Item>
                                     </NavDropdown>
                                     <NavDropdown title="Listings" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="#action/3.1">Candidates List</NavDropdown.Item>
